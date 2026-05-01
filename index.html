@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YV English · Extra Activity — At the Coffee Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:      #FAF7F2;
+      --paper:      #FFFDF9;
+      --coffee:     #6B3F2A;
+      --espresso:   #3D1F0E;
+      --caramel:    #C8883A;
+      --caramel-soft: #F0C87A;
+      --foam:       #F5ECD7;
+      --plum:       #3D2645;
+      --plum-mid:   #5C3D6E;
+      --text:       #1E1A1A;
+      --muted:      #7A6E6E;
+      --line:       #E7DED4;
+      --radius:     14px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background:
+        radial-gradient(ellipse at 80% 0%, rgba(107,63,42,.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 0% 100%, rgba(200,136,58,.15) 0%, transparent 45%),
+        linear-gradient(145deg, #1A0A04 0%, #2D1208 50%, #3D1F0E 100%);
+      color: #fff;
+      padding: 36px 24px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.018'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .yv-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--caramel-soft);
+      letter-spacing: .06em;
+    }
+
+    .extra-badge {
+      font-size: .72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: rgba(255,255,255,.6);
+      border: 1px solid rgba(255,255,255,.2);
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.06);
+    }
+
+    .eyebrow {
+      font-size: .7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .28em;
+      color: var(--caramel);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 7vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--caramel-soft);
+    }
+
+    .hero-sub {
+      font-size: .92rem;
+      color: rgba(255,255,255,.65);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .deco-cup {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 7rem;
+      opacity: .08;
+      line-height: 1;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .section-label span { flex: 1; height: 1px; background: var(--line); }
+    .section-label p {
+      font-size: .7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .26em;
+      color: var(--caramel);
+      white-space: nowrap;
+    }
+
+    /* ── DIALOGUE ── */
+    .dialogue {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 24px rgba(61,31,14,.08);
+    }
+
+    .dialogue-header {
+      background:
+        radial-gradient(ellipse at 100% 0%, rgba(200,136,58,.2), transparent 50%),
+        linear-gradient(135deg, var(--espresso), var(--coffee));
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .dialogue-header-icon { font-size: 1.4rem; }
+
+    .dialogue-header-text strong {
+      display: block;
+      font-size: .92rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .dialogue-header-text span {
+      font-size: .75rem;
+      color: rgba(255,255,255,.6);
+    }
+
+    .dialogue-body { padding: 8px 0; }
+
+    .line {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--line);
+      animation: fadeUp .4s ease both;
+    }
+
+    .line:last-child { border-bottom: none; }
+
+    .line.barista { background: var(--foam); }
+    .line.customer { background: var(--paper); }
+
+    .speaker-tag {
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      padding: 3px 9px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+      margin-right: 14px;
+      min-width: 68px;
+      text-align: center;
+    }
+
+    .barista .speaker-tag {
+      background: var(--coffee);
+      color: #fff;
+    }
+
+    .customer .speaker-tag {
+      background: var(--plum);
+      color: #fff;
+    }
+
+    .line-text {
+      font-size: .92rem;
+      line-height: 1.6;
+      color: var(--text);
+      flex: 1;
+    }
+
+    /* ── QUESTIONS ── */
+    .questions-section { margin-top: 8px; }
+
+    .question-block {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 10px rgba(61,31,14,.05);
+    }
+
+    .q-text {
+      font-size: .92rem;
+      font-weight: 500;
+      color: var(--espresso);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .q-text strong {
+      color: var(--caramel);
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .opt-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: left;
+      font-size: .88rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      transition: background .15s, border-color .15s;
+      width: 100%;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      background: #F0EAF8;
+      border-color: var(--plum-mid);
+    }
+
+    .opt-btn:disabled { cursor: default; }
+
+    .opt-letter {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--foam);
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--coffee);
+      flex-shrink: 0;
+    }
+
+    .opt-btn.correct { background: #EAF7F1; border-color: #2D7158; }
+    .opt-btn.correct .opt-letter { background: #2D7158; border-color: #2D7158; color: #fff; }
+    .opt-btn.wrong   { background: #FDEBEB; border-color: #9D2828; }
+    .opt-btn.wrong   .opt-letter { background: #9D2828; border-color: #9D2828; color: #fff; }
+
+    .q-feedback {
+      margin-top: 8px;
+      font-size: .82rem;
+      font-weight: 600;
+      min-height: 20px;
+    }
+    .feedback-correct { color: #2D7158; }
+    .feedback-wrong   { color: #9D2828; }
+
+    /* ── SCORE ── */
+    .score-wrap {
+      display: none;
+      margin-top: 28px;
+      padding: 22px 24px;
+      background: linear-gradient(135deg, var(--espresso), var(--coffee));
+      border-radius: var(--radius);
+      text-align: center;
+      color: #fff;
+    }
+
+    .score-wrap.show { display: block; animation: fadeUp .4s ease both; }
+
+    .score-emoji { font-size: 2.2rem; margin-bottom: 8px; }
+
+    .score-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+
+    .score-sub {
+      font-size: .88rem;
+      color: rgba(255,255,255,.7);
+      line-height: 1.5;
+    }
+
+    .score-num {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--caramel-soft);
+      margin: 12px 0 4px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .reset-btn {
+      margin-top: 16px;
+      padding: 10px 24px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      color: #fff;
+      border-radius: 8px;
+      font-size: .85rem;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .reset-btn:hover { background: rgba(255,255,255,.22); }
+
+    /* ── TIP ── */
+    .yas-tip {
+      margin-top: 32px;
+      padding: 16px 18px;
+      background: #FFF8EC;
+      border-left: 3px solid var(--caramel);
+      border-radius: 0 10px 10px 0;
+      font-size: .86rem;
+      color: #7A5520;
+      line-height: 1.6;
+    }
+    .yas-tip strong {
+      color: var(--caramel);
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 500px) {
+      .speaker-tag { min-width: 58px; font-size: .6rem; padding: 3px 7px; }
+      .line-text { font-size: .88rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-top">
+      <span class="yv-logo">YV English</span>
+      <span class="extra-badge">Atividade Extra</span>
+    </div>
+    <p class="eyebrow">Reading & Comprehension</p>
+    <h1>At the<br><em>Coffee Shop</em> ☕</h1>
+    <p class="hero-sub">Leia o diálogo abaixo e responda as perguntas.<br>Quanto você entendeu?</p>
+    <div class="deco-cup">☕</div>
+  </div>
+</header>
+
+<main>
+
+  <div class="section-label">
+    <span></span><p>Diálogo</p><span></span>
+  </div>
+
+  <div class="dialogue">
+    <div class="dialogue-header">
+      <span class="dialogue-header-icon">☕</span>
+      <div class="dialogue-header-text">
+        <strong>At the Coffee Shop</strong>
+        <span>Barista × Customer</span>
+      </div>
+    </div>
+    <div class="dialogue-body">
+      <div class="line barista">
+        <span class="speaker-tag">Barista</span>
+        <span class="line-text">Hi! What can I get started for you?</span>
+      </div>
+      <div class="line customer">
+        <span class="speaker-tag">Customer</span>
+        <span class="line-text">Hey! Can I get a medium iced latte with oat milk?</span>
+      </div>
+      <div class="line barista">
+        <span class="speaker-tag">Barista</span>
+        <span class="line-text">Sure thing. Do you want any flavor in that?</span>
+      </div>
+      <div class="line customer">
+        <span class="speaker-tag">Customer</span>
+        <span class="line-text">Yeah, could you add a pump of vanilla? Not too sweet though.</span>
+      </div>
+      <div class="line barista">
+        <span class="speaker-tag">Barista</span>
+        <span class="line-text">Got it, just one pump. Anything else?</span>
+      </div>
+      <div class="line customer">
+        <span class="speaker-tag">Customer</span>
+        <span class="line-text">Actually, yeah. I'll also take a blueberry muffin.</span>
+      </div>
+      <div class="line barista">
+        <span class="speaker-tag">Barista</span>
+        <span class="line-text">Perfect. Is that for here or to go?</span>
+      </div>
+      <div class="line customer">
+        <span class="speaker-tag">Customer</span>
+        <span class="line-text">To go, please.</span>
+      </div>
+      <div class="line barista">
+        <span class="speaker-tag">Barista</span>
+        <span class="line-text">Alright, your total is $7.50.</span>
+      </div>
+      <div class="line customer">
+        <span class="speaker-tag">Customer</span>
+        <span class="line-text">Here you go.</span>
+      </div>
+      <div class="line barista">
+        <span class="speaker-tag">Barista</span>
+        <span class="line-text">Thanks! It'll be ready in just a minute.</span>
+      </div>
+      <div class="line customer">
+        <span class="speaker-tag">Customer</span>
+        <span class="line-text">Awesome, thank you!</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">
+    <span></span><p>Exercícios</p><span></span>
+  </div>
+
+  <div class="questions-section" id="questionsSection"></div>
+
+  <div class="score-wrap" id="scoreWrap">
+    <div class="score-emoji" id="scoreEmoji">🎉</div>
+    <div class="score-title" id="scoreTitle">Well done!</div>
+    <div class="score-num" id="scoreNum"></div>
+    <div class="score-sub" id="scoreSub"></div>
+    <button class="reset-btn" onclick="resetQuiz()">Tentar novamente ↺</button>
+  </div>
+
+  <div class="yas-tip">
+    <strong>Dica da Yas</strong>
+    Leia o diálogo em voz alta depois de terminar os exercícios — isso ajuda muito na pronúncia e na naturalidade! ✦
+  </div>
+
+</main>
+
+<script>
+var QUESTIONS = [
+  {
+    q: "What does the customer order to drink?",
+    opts: [
+      { l: "a", t: "A hot cappuccino with almond milk" },
+      { l: "b", t: "A medium iced latte with oat milk" },
+      { l: "c", t: "A large cold brew with soy milk" },
+      { l: "d", t: "A small iced coffee with whole milk" },
+      { l: "e", t: "A medium hot latte with oat milk" }
+    ],
+    ans: "b"
+  },
+  {
+    q: "What flavor does the customer ask for?",
+    opts: [
+      { l: "a", t: "Caramel" },
+      { l: "b", t: "Hazelnut" },
+      { l: "c", t: "Vanilla" },
+      { l: "d", t: "Cinnamon" },
+      { l: "e", t: "No flavor" }
+    ],
+    ans: "c"
+  },
+  {
+    q: "Why does the customer say 'not too sweet'?",
+    opts: [
+      { l: "a", t: "They don't like vanilla" },
+      { l: "b", t: "They want extra pumps" },
+      { l: "c", t: "They want to limit how sweet the drink is" },
+      { l: "d", t: "They are on a diet" },
+      { l: "e", t: "They are allergic to sugar" }
+    ],
+    ans: "c"
+  },
+  {
+    q: "What food does the customer also order?",
+    opts: [
+      { l: "a", t: "A chocolate croissant" },
+      { l: "b", t: "A banana bread" },
+      { l: "c", t: "A blueberry muffin" },
+      { l: "d", t: "A cinnamon roll" },
+      { l: "e", t: "A bagel" }
+    ],
+    ans: "c"
+  },
+  {
+    q: "Is the order for here or to go?",
+    opts: [
+      { l: "a", t: "For here" },
+      { l: "b", t: "For delivery" },
+      { l: "c", t: "The customer doesn't say" },
+      { l: "d", t: "To go" },
+      { l: "e", t: "For a friend outside" }
+    ],
+    ans: "d"
+  },
+  {
+    q: "How much does the order cost?",
+    opts: [
+      { l: "a", t: "$5.00" },
+      { l: "b", t: "$6.50" },
+      { l: "c", t: "$7.50" },
+      { l: "d", t: "$8.00" },
+      { l: "e", t: "$10.00" }
+    ],
+    ans: "c"
+  },
+  {
+    q: "What does the barista say at the end?",
+    opts: [
+      { l: "a", t: "It'll be ready in 10 minutes" },
+      { l: "b", t: "Please wait outside" },
+      { l: "c", t: "It'll be ready in just a minute" },
+      { l: "d", t: "Come back tomorrow" },
+      { l: "e", t: "Have a great day" }
+    ],
+    ans: "c"
+  }
+];
+
+var answered = 0;
+var correct  = 0;
+
+function buildQuiz() {
+  answered = 0; correct = 0;
+  var section = document.getElementById("questionsSection");
+  var html = "";
+  QUESTIONS.forEach(function(q, qi) {
+    html += '<div class="question-block" id="qblock'+qi+'">'
+      + '<p class="q-text"><strong>'+(qi+1)+'.</strong> '+q.q+'</p>'
+      + '<div class="options">';
+    q.opts.forEach(function(opt) {
+      html += '<button class="opt-btn" id="q'+qi+opt.l+'" onclick="answer('+qi+',\''+opt.l+'\',\''+q.ans+'\')">'
+        + '<span class="opt-letter">'+opt.l+'</span>'
+        + '<span>'+opt.t+'</span>'
+        + '</button>';
+    });
+    html += '</div><p class="q-feedback" id="fb'+qi+'"></p></div>';
+  });
+  section.innerHTML = html;
+  document.getElementById("scoreWrap").classList.remove("show");
+}
+
+function answer(qi, chosen, correct_ans) {
+  var opts = document.querySelectorAll("#qblock"+qi+" .opt-btn");
+  opts.forEach(function(b){b.disabled=true;});
+  var chosenBtn  = document.getElementById("q"+qi+chosen);
+  var correctBtn = document.getElementById("q"+qi+correct_ans);
+  var fb = document.getElementById("fb"+qi);
+  answered++;
+  if (chosen === correct_ans) {
+    chosenBtn.classList.add("correct");
+    fb.textContent = "✦ Correct!";
+    fb.className = "q-feedback feedback-correct";
+    correct++;
+  } else {
+    chosenBtn.classList.add("wrong");
+    correctBtn.classList.add("correct");
+    fb.textContent = "The correct answer is " + correct_ans.toUpperCase() + ".";
+    fb.className = "q-feedback feedback-wrong";
+  }
+  if (answered === QUESTIONS.length) showScore();
+}
+
+function showScore() {
+  var wrap  = document.getElementById("scoreWrap");
+  var emoji = document.getElementById("scoreEmoji");
+  var title = document.getElementById("scoreTitle");
+  var num   = document.getElementById("scoreNum");
+  var sub   = document.getElementById("scoreSub");
+  var pct   = Math.round((correct / QUESTIONS.length) * 100);
+
+  num.textContent = correct + " / " + QUESTIONS.length;
+
+  if (pct === 100) {
+    emoji.textContent = "🏆"; title.textContent = "Perfect score!";
+    sub.textContent = "Incrivel! Voce entendeu tudo. Leia em voz alta agora!";
+  } else if (pct >= 70) {
+    emoji.textContent = "🎉"; title.textContent = "Great job!";
+    sub.textContent = "Muito bem! Voce entendeu a maior parte do dialogo.";
+  } else if (pct >= 40) {
+    emoji.textContent = "💪"; title.textContent = "Good effort!";
+    sub.textContent = "Bom trabalho! Releia o dialogo e tente novamente.";
+  } else {
+    emoji.textContent = "📖"; title.textContent = "Keep going!";
+    sub.textContent = "Releia o dialogo com calma e tente de novo — voce consegue!";
+  }
+
+  wrap.classList.add("show");
+  setTimeout(function(){wrap.scrollIntoView({behavior:"smooth",block:"start"});}, 200);
+}
+
+function resetQuiz() {
+  buildQuiz();
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+buildQuiz();
+</script>
+</body>
+</html>
